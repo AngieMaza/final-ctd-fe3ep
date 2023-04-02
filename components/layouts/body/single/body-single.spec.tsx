@@ -14,7 +14,6 @@ describe('BodySingle', () => {
             render(<BodySingle title={'title'}><p>children</p></BodySingle>)
             const children = screen.getByText('children')
             expect(children).toBeInTheDocument()
-
             const title = screen.getByText('title')
             expect(title).toBeInTheDocument()
         })
