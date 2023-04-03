@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
 import { getComics } from 'dh-marvel/services/marvel/marvel.service';
@@ -10,6 +10,10 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { useState, useEffect, ChangeEvent } from 'react';
+import { NextPageWithLayout } from './_app.page';
+import type { ReactElement, ReactNode } from 'react';
+import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
+import comic from 'dh-marvel/test/mocks/comic';
 
 type Props = {
     data: CardType[],
@@ -23,18 +27,19 @@ const Item = styled(Paper)(({ theme }) => ({
     margin: theme.spacing(1)
 }));
 
-const Index: NextPage<Props> = ({ data, totalPages }: Props) => {
-    const [page , setPage] = useState<number>(1)
+const Index: NextPageWithLayout<Props> = ({ data, totalPages }: Props) => {
 
-    useEffect( () => {
-        async function getData () {
-            const result = await fetch("api/comics/?page="+ page)
-            console.log(result);
+    const [page, setPage] = useState<number>(1)
+    const [comics, setComics] = useState<CardType[]>(data);
+    useEffect(() => {
+        async function getData() {
+            const result = await fetch("api/comics/?page=" + page)
+            const data = await result.json()
+            setComics(data.results)
         }
         getData();
     }, [page])
-
-    const hadleChange = (event: ChangeEvent<unknown> , value : number)  =>{
+    const hadleChange = (event: ChangeEvent<unknown>, value: number) => {
         setPage(value)
     }
     return (
@@ -45,27 +50,40 @@ const Index: NextPage<Props> = ({ data, totalPages }: Props) => {
             </Head>
             <BodySingle title={"Cómics"}>
                 <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center", flexDirection: "column" }}>
+                    <Stack spacing={2} sx={{ marginBottom: 5 }}>
+                        <Pagination
+                            count={totalPages}
+                            page={page}
+                            color="primary"
+                            onChange={hadleChange}
+                        />
+                    </Stack>
                     <Grid container spacing={3} sx={{ marginBottom: 5 }}>
-                        {data.map(d => {
+                        {comics.map(d => {
                             return (
-                                    <Item key={d.id}>
+                                <Grid key={d.id}  >
+                                    <Item >
                                         <ComicCard data={d} />
-                                    </Item>)
+                                    </Item>
+                                </Grid>)
                         })}
                     </Grid>
                     <Stack spacing={2} sx={{ marginBottom: 5 }}>
                         <Pagination
                             count={totalPages}
+                            page={page}
                             color="primary"
                             onChange={hadleChange}
-                            />
+                        />
                     </Stack>
                 </Box>
             </BodySingle>
         </>
     )
 }
-
+Index.getLayout = function getLayout(page: ReactElement) {
+    return <LayoutGeneral>{page}</LayoutGeneral>
+}
 export const getServerSideProps: GetServerSideProps = async () => {
     const res = await getComics(0, 12);
     const totalPages = Math.ceil(res.data.total / 12);
@@ -73,4 +91,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
         props: { data: res.data.results, totalPages }
     }
 }
-export default Index
+export default Index;

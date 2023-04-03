@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC, PropsWithChildren } from "react";
 import Container, { ContainerProps } from "@mui/material/Container";
 import { Stack, Typography } from "@mui/material";
-import background from "../../../../public/background.jpg"
+import background from "../../../../public/background.jpg";
 interface BodySingleProps extends PropsWithChildren {
     title?: string,
     containerProps?: ContainerProps
