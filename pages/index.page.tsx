@@ -13,7 +13,6 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { NextPageWithLayout } from './_app.page';
 import type { ReactElement, ReactNode } from 'react';
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
-import comic from 'dh-marvel/test/mocks/comic';
 
 type Props = {
     data: CardType[],

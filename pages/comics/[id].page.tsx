@@ -7,17 +7,23 @@ import { NextPageWithLayout } from '../_app.page';
 import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
 import ComicDetails from 'dh-marvel/components/comicDetails/comicDetails';
 import type { Character } from 'dh-marvel/components/characterDetails/characterDetails';
+import Head from 'next/head';
 interface Props {
     data: Comic,
-    characters : Character[]
+    characters: Character[]
 }
 
 const ComicId: NextPageWithLayout<Props> = ({ data, characters }: Props) => {
-    
+
     return (
-        <BodySingle title={data.title}>
-            <ComicDetails comic={data} characters={characters}/>
-        </BodySingle>
+        <>
+            <Head>
+                <title>Comics - {data.title}</title>
+            </Head>
+            <BodySingle title={data.title}>
+                <ComicDetails comic={data} characters={characters} />
+            </BodySingle>
+        </>
     )
 }
 ComicId.getLayout = function getLayout(page: ReactElement) {

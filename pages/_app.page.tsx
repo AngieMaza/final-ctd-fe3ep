@@ -7,12 +7,12 @@ import type { ReactElement, ReactNode } from 'react';
 
 
 
-export type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<T> = NextPage<T>  & {
   getLayout?: (page: ReactElement) => ReactNode
 }
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
+  Component: NextPageWithLayout<unknown> 
 }
 
 

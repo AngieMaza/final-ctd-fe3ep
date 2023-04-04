@@ -5,6 +5,7 @@ import { ReactElement } from 'react';
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
 import { NextPageWithLayout } from '../_app.page';
 import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
+import Head from 'next/head'
 
 interface Props {
     data: Character
@@ -13,9 +14,14 @@ interface Props {
 const CharacterId: NextPageWithLayout<Props> = ({ data }: Props) => {
 
     return (
-        <BodySingle title={data.name}>
-            <CharacterDetails character={data}/>
-        </BodySingle>)
+        <>
+            <Head>
+                <title>Personajes - {data.name}</title>
+            </Head>
+            <BodySingle title={data.name}>
+                <CharacterDetails character={data} />
+            </BodySingle>
+        </>)
 }
 CharacterId.getLayout = function getLayout(page: ReactElement) {
     return <LayoutGeneral>{page}</LayoutGeneral>
