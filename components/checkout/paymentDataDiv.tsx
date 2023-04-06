@@ -1,11 +1,12 @@
 import React from "react";
 import { Grid } from '@mui/material';;
 import Input from "./input";
+import CheckButton from "../buttons/checkButton";
 
-const PaymentDataForm = ({ control }:any) => {
+const PaymentDataDiv = ({ control, handler }: any) => {
 
     return (
-        <form>
+        <>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <Input
@@ -44,8 +45,11 @@ const PaymentDataForm = ({ control }:any) => {
                         />
                 </Grid>
             </Grid>
-        </form>
+            <div style={{ marginTop: "2rem" }}>
+                <CheckButton onClick={handler} name= "Atras" disabled={false} />
+            </div>
+        </>
     );
 };
 
-export default PaymentDataForm;
+export default PaymentDataDiv;

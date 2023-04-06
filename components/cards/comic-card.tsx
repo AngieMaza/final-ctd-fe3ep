@@ -3,11 +3,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
-import NextLink from 'next/link'
-import { Link as MUILink } from '@mui/material';
+import GeneralButton from '../buttons/generalButton';
 
 export type CardType = {
   id: number,
@@ -37,22 +35,8 @@ const ComicCard: FC<Props> = ({ data }: Props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" sx={{width:120}}>
-          <NextLink href="/" passHref>
-            <MUILink sx={{
-              textDecoration: 'none',
-              color: "white",
-            }}> Comprar</MUILink>
-          </NextLink>
-        </Button>
-        <Button variant="contained" sx={{width:120}}>
-          <NextLink href={`/comics/${data.id}`} passHref>
-            <MUILink sx={{
-              textDecoration: 'none',
-              color: "white"
-            }}> Ver detalle</MUILink>
-          </NextLink>
-        </Button>
+        <GeneralButton href="/checkout" name="Comprar" disabled = {false}/>
+        <GeneralButton href={`/comics/${data.id}`} name="Ver Detalle" disabled = {false}/>
       </CardActions>
     </Card>
   );

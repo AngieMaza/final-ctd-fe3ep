@@ -1,11 +1,13 @@
 import React from "react";
 import { Grid } from '@mui/material';;
 import Input from "./input";
+import CheckButton from "../buttons/checkButton";
 
-const DeliveryDataForm = ({ control }:any) => {
+const DeliveryDataDiv = ({ control, handler, handler2 }: any) => {
+
 
     return (
-        <form>
+        <>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Input
@@ -13,8 +15,8 @@ const DeliveryDataForm = ({ control }:any) => {
                         name="address"
                         type="text"
                         ph="Direccion"
-                        rules={{ required: true }} 
-                        />
+                        rules={{ required: true }}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Input
@@ -40,8 +42,8 @@ const DeliveryDataForm = ({ control }:any) => {
                         name="prov"
                         type="text"
                         ph="Provincia"
-                        rules={{ required: true }} 
-                        />
+                        rules={{ required: true }}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Input
@@ -49,12 +51,16 @@ const DeliveryDataForm = ({ control }:any) => {
                         name="cp"
                         type="text"
                         ph="Codigo Postal"
-                        rules={{ required: true }} 
-                        />
+                        rules={{ required: true }}
+                    />
                 </Grid>
             </Grid>
-        </form>
+            <div style={{ marginTop: "2rem" }}>
+                <CheckButton onClick={handler2} name="Atras" disabled={false} />
+                <CheckButton onClick={handler} name="Siguiente" disabled={false} />
+            </div>
+        </>
     );
 };
 
-export default DeliveryDataForm;
+export default DeliveryDataDiv;

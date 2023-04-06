@@ -44,11 +44,11 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link as MUILink, Stack } from '@mui/material';
 import NextLink from 'next/link'
 import type { Character } from '../characterDetails/characterDetails';
+import GeneralButton from '../buttons/generalButton';
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -98,15 +98,7 @@ const ComicsDetails = ({ comic, characters }: Props) => {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Button disabled={comic.stock === 0} variant="contained">
-                                <NextLink href="/" passHref >
-                                    <MUILink sx={{
-                                        textDecoration: 'none',
-                                        fontSize: 18,
-                                        color: "white"
-                                    }}>{comic.stock === 0 ? "Sin Stock" : "Comprar"}</MUILink>
-                                </NextLink>
-                            </Button>
+                            <GeneralButton href='/checkout' name={comic.stock === 0 ? "Sin Stock" : "Comprar"} disabled={comic.stock === 0}/>
                         </Grid>
                     </Grid>
                     <Grid item sx={{margin: 2}}>

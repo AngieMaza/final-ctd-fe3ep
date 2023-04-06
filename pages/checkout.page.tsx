@@ -4,26 +4,30 @@ import { ReactElement } from "react"
 import Head from "next/head"
 import BodySingle from "dh-marvel/components/layouts/body/single/body-single"
 import { useForm } from 'react-hook-form';
-import { Button, Stepper, Step, StepLabel} from '@mui/material';
+import { Stepper, Step, StepLabel, Button} from '@mui/material';
 import React from "react";
-import PersonalDataForm from "../components/checkout/personalDataForm"
-import DeliveryDataForm from "dh-marvel/components/checkout/deliveryDataForm"
-import PaymentDataForm from "dh-marvel/components/checkout/paymentDataForm"
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import PersonalDataDiv from "../components/checkout/personalDataDiv"
+import DeliveryDataDiv from "dh-marvel/components/checkout/deliveryDataDiv"
+import PaymentDataDiv from "dh-marvel/components/checkout/paymentDataDiv"
 
 const schema = yup.object({
-    name: yup.string().min(5,"es minimo").matches(/"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/, "segui la indicacion" ).required(),
+    name: yup.string().matches(/"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/, "segui la indicacion" ).required("requirido bro"),
     email: yup.string().email("Hola kaku").required("requirido bro"),
 }).required();
 
+type FormData = yup.InferType<typeof schema>;
+
+
 const Checkout: NextPageWithLayout<[]> = () => {
-    const {handleSubmit, control } = useForm({resolver: yupResolver(schema)});
+    const {handleSubmit, control , trigger} = useForm<FormData>({resolver: yupResolver(schema)});
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = ["Datos Personales", "Dirección de entrega", "Datos del pago"];
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const handleNext = async() => {
+        const name = await trigger("name");
+        name && setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 
     const handleBack = () => {
@@ -34,18 +38,6 @@ const Checkout: NextPageWithLayout<[]> = () => {
         console.log(data);
     };
 
-    const getStepContent = (step:number) => {
-        switch (step) {
-            case 0:
-                return <PersonalDataForm control={control}/>;
-            case 1:
-                return <DeliveryDataForm control={control}/>;
-            case 2:
-                return <PaymentDataForm control={control}/>;
-            default:
-                throw new Error("Paso desconocido");
-        }
-    };
     return (
         <>
             <Head>
@@ -59,27 +51,12 @@ const Checkout: NextPageWithLayout<[]> = () => {
                         </Step>
                     ))}
                 </Stepper>
-                {getStepContent(activeStep)}
-                <div style={{ marginTop: "2rem" }}>
-                    <Button
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        variant="contained"
-                        color="primary"
-                    >
-                        Atrás
-                    </Button>
-                    <Button
-                        style={{ marginLeft: "1rem" }}
-                        variant="contained"
-                        color="primary"
-                        onClick={
-                            activeStep === steps.length - 1 ? handleSubmit(onSubmit) : handleNext
-                        }
-                    >
-                        {activeStep === steps.length - 1 ? "Enviar" : "Siguiente"}
-                    </Button>
-                </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                {activeStep === 0 && <PersonalDataDiv control={control}  handler ={handleNext}/>}
+                {activeStep === 1 && <DeliveryDataDiv control={control} handler ={handleNext} handler2 ={handleBack}/>}
+                {activeStep === 2 && <PaymentDataDiv control={control} handler ={handleBack}/>}
+                {activeStep === 2 && <Button type="submit"> Enviar </Button> }
+                </form>
             </BodySingle>
         </>
     )
