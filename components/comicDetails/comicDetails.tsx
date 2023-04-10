@@ -98,7 +98,7 @@ const ComicsDetails = ({ comic, characters }: Props) => {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <GeneralButton href='/checkout' name={comic.stock === 0 ? "Sin Stock" : "Comprar"} disabled={comic.stock === 0}/>
+                            <GeneralButton href={`/checkout?id=${comic.id}`} name={comic.stock === 0 ? "Sin Stock" : "Comprar"} disabled={comic.stock === 0}/>
                         </Grid>
                     </Grid>
                     <Grid item sx={{margin: 2}}>

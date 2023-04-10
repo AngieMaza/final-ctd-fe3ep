@@ -1,30 +1,27 @@
 import React from "react";
-import { Grid } from '@mui/material';;
+import { Grid, Typography } from '@mui/material';;
 import Input from "./input";
 import CheckButton from "../buttons/checkButton";
 
-const DeliveryDataDiv = ({ control, handler, handler2 }: any) => {
-
-
+const DeliveryDataDiv = ({ control, handler, handler2, errors }: any) => {
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                     <Input
                         control={control}
                         name="address"
                         type="text"
                         ph="Direccion"
-                        rules={{ required: true }}
                     />
+                    <Typography sx={{ color: "red" }}>{errors.address?.message?.toString()}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Input
                         control={control}
-                        name="depto"
+                        name="address2"
                         type="text"
                         ph="Departmento, piso, etc..."
-                        rules={{ required: false }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -33,17 +30,17 @@ const DeliveryDataDiv = ({ control, handler, handler2 }: any) => {
                         name="city"
                         type="text"
                         ph="Ciudad"
-                        rules={{ required: true }}
                     />
+                    <Typography sx={{ color: "red" }}>{errors.city?.message?.toString()}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Input
                         control={control}
-                        name="prov"
+                        name="state"
                         type="text"
                         ph="Provincia"
-                        rules={{ required: true }}
                     />
+                    <Typography sx={{ color: "red" }}>{errors.state?.message?.toString()}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Input
@@ -51,8 +48,8 @@ const DeliveryDataDiv = ({ control, handler, handler2 }: any) => {
                         name="cp"
                         type="text"
                         ph="Codigo Postal"
-                        rules={{ required: true }}
                     />
+                    <Typography sx={{ color: "red" }}>{errors.cp?.message?.toString()}</Typography>
                 </Grid>
             </Grid>
             <div style={{ marginTop: "2rem" }}>

@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React, { FC, ReactElement } from 'react'
+import React, { FC, ReactElement, useContext } from 'react'
 import { getComic, getComicCharacters, getComics } from 'dh-marvel/services/marvel/marvel.service';
 import type { Comic } from 'dh-marvel/components/comicDetails/comicDetails';
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const ComicId: NextPageWithLayout<Props> = ({ data, characters }: Props) => {
-
     return (
         <>
             <Head>

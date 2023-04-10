@@ -1,25 +1,23 @@
 import TextField from "@mui/material/TextField"
 import { useController } from "react-hook-form";
 
-const Input = ({ control, name, type, rules, ph }: any) => {
+const Input = ({ control, name, type, ph }: any) => {
     const {
-        field: {
-            value, onChange
-        }
+        field
     } = useController({
         name,
         control,
-        rules
     })
     return (
         <TextField
+            id ={name}
             fullWidth
             variant="outlined"
             placeholder={ph}
             type={type}
             name={name}
-            value={value}
-            onChange={onChange}
+            value={field.value}
+            onChange={field.onChange}
         />
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import ComicCard from './comic-card';
+import ComicCard from './home-comic-card';
 
 
 
