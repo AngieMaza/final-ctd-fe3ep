@@ -35,16 +35,19 @@ describe('CheckoutPage', () => {
         })
     })
 
-    /* describe("handleNext1", () => {
+    describe("handleNext1", () => {
         it("should trigger the second step if valid data is entered", async () => {
             // Arrange
-            const { control } = useForm();
             const handlerMock = jest.fn();
-            render(<PersonalDataDiv control={control} handler={handlerMock} />);
+            const DummyComponent = () => {
+                const {control, formState:{errors}} = useForm()
+                return <PersonalDataDiv control={control} errors={errors} handler={handlerMock} />
+            }
+            render(<DummyComponent/>);
             const nameInput = screen.getByPlaceholderText(/Nombre/i);
             const lastNameInput = screen.getByPlaceholderText(/Apellido/i);
             const emailInput = screen.getByPlaceholderText(/E-mail/i);
-            const submitButton = screen.getByRole(/siguiente/i);
+            const submitButton = screen.getByText(/siguiente/i);
             // Act
             await fireEvent.input(nameInput, { target: { value: "John" } });
             await fireEvent.input(lastNameInput, { target: { value: "Doe" } });
@@ -53,17 +56,6 @@ describe('CheckoutPage', () => {
             // Assert
             expect(handlerMock).toHaveBeenCalledTimes(1);
         });
-
-        it("should not trigger the second step if invalid data is entered", async () => {
-            // Arrange
-            const { control } = useForm();
-            const handlerMock = jest.fn();
-            render(<PersonalDataDiv control={control} handler={handlerMock} />);
-            const submitButton = screen.getByText(/siguiente/i);
-            // Act
-            fireEvent.click(submitButton);
-            // Assert
-            expect(handlerMock).not.toHaveBeenCalled();
-        }); 
-    });*/
+    });
+    
 })
