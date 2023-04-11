@@ -6,7 +6,7 @@ import GeneralButton from './generalButton';
 
 
 export default {
-  title: 'Components/Cards/CardComponent',
+  title: 'Components/Button/GeneralButton',
   component: GeneralButton,
   argTypes: {
   },

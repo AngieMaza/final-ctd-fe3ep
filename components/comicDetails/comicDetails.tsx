@@ -1,13 +1,8 @@
 export type Comic = {
     id: number,
-    digitalId: number,
     title: string,
     description: string,
     pageCount: number,
-    dates: [{
-        type: string,
-        date: string,
-    },],
     price: number,
     oldPrice: number,
     stock: number,
@@ -26,18 +21,7 @@ export type Comic = {
             }
         ],
         returned: number
-    },
-    characters: {
-        available: number,
-        collectionURI: string,
-        items: [
-            {
-                resourceURI: string,
-                name: string,
-            }
-        ],
-        returned: number
-    },
+    }
 }
 
 import * as React from 'react';

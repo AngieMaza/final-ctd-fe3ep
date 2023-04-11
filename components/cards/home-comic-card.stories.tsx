@@ -6,7 +6,7 @@ import ComicCard from './home-comic-card';
 
 
 export default {
-  title: 'Components/Cards/CardComponent',
+  title: 'Components/Cards/HomeComicCard',
   component: ComicCard,
   argTypes: {
   },
@@ -20,8 +20,8 @@ Primary.args = {
         id: 0,
         title: "StoryExample",
         thumbnail: {
-            path:"example",
-            extension:"png"
+            path:"https://fotografiamejorparavendermas.com/wp-content/uploads/2017/06/La-importancia-de-la-imagen",
+            extension:"jpg"
         }
     }
 };
