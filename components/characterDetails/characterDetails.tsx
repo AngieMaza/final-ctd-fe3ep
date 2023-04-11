@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { Link as MUILink, Stack } from '@mui/material';
 import NextLink from 'next/link'
+import { Comic } from '../comicDetails/comicDetails';
 const Img = styled('img')({
     margin: 'auto',
     display: 'block',
@@ -22,8 +23,9 @@ const Img = styled('img')({
 });
 type Props = {
     character: Character
+    comics: Comic[]
 }
-const CharacterDetails = ({ character }: Props) => {
+const CharacterDetails = ({ character , comics }: Props) => {
     return (
         <Paper elevation={16}
             sx={{
@@ -46,14 +48,14 @@ const CharacterDetails = ({ character }: Props) => {
                             <Typography variant="body2" color="text.secondary">
                                 {character.description === "" ? "Descripción : No disponible" : `Descripción: ${character.description}`}
                             </Typography>
-                            {/*    <Typography component="div">
-                                Personajes: {characters.length != 0 && characters.map((it) => <NextLink key={it.id} href={`/personajes/${it.id}`} passHref><MUILink sx={{
+                            {<Typography component="div">
+                                Comics: {comics.length != 0 && comics.map((it) => <NextLink key={it.id} href={`/comics/${it.id}`} passHref><MUILink sx={{
                                     textDecoration: 'none',
                                     fontSize: 16,
                                     color: "primary",
                                     mr: 1
-                                }}>{it.name},</MUILink></NextLink>)}
-                            </Typography> */}
+                                }}>{it.title},</MUILink></NextLink>)}
+                            </Typography>}
                         </Grid>
                     </Grid>
                 </Grid>

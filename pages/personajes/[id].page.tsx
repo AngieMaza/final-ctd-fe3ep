@@ -1,17 +1,19 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getCharacter, getCharacters } from 'dh-marvel/services/marvel/marvel.service';
+import { getCharacter, getCharacterComics, getCharacters } from 'dh-marvel/services/marvel/marvel.service';
 import CharacterDetails, { Character } from 'dh-marvel/components/characterDetails/characterDetails';
 import { ReactElement } from 'react';
 import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
 import { NextPageWithLayout } from '../_app.page';
 import BodySingle from 'dh-marvel/components/layouts/body/single/body-single';
 import Head from 'next/head'
+import { Comic } from 'dh-marvel/components/comicDetails/comicDetails';
 
 interface Props {
-    data: Character
+    data: Character,
+    comics: Comic[]
 }
 
-const CharacterId: NextPageWithLayout<Props> = ({ data }: Props) => {
+const CharacterId: NextPageWithLayout<Props> = ({ data, comics }: Props) => {
 
     return (
         <>
@@ -19,7 +21,7 @@ const CharacterId: NextPageWithLayout<Props> = ({ data }: Props) => {
                 <title>Personajes - {data.name}</title>
             </Head>
             <BodySingle title={data.name}>
-                <CharacterDetails character={data} />
+                <CharacterDetails character={data} comics={comics} />
             </BodySingle>
         </>)
 }
@@ -29,9 +31,10 @@ CharacterId.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const id = params?.id?.toString() || '0'
     const character = await getCharacter(parseInt(id))
+    const comics = await getCharacterComics(parseInt(id))
     return {
         props: {
-            data: character
+            data: character , comics
         }
     }
 }

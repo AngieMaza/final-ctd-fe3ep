@@ -45,11 +45,11 @@ const DeliveryDataDiv = ({ control, handler, handler2, errors }: any) => {
                 <Grid item xs={12} sm={6}>
                     <Input
                         control={control}
-                        name="cp"
+                        name="zipCode"
                         type="text"
                         ph="Codigo Postal"
                     />
-                    <Typography sx={{ color: "red" }}>{errors.cp?.message?.toString()}</Typography>
+                    <Typography sx={{ color: "red" }}>{errors.zipCode?.message?.toString()}</Typography>
                 </Grid>
             </Grid>
             <div style={{ marginTop: "2rem" }}>

@@ -17,12 +17,12 @@ const CheckCard: FC<Props> = ({ data }: Props) => {
             <CardMedia
                 component="img"
                 alt={data.title}
-                height="340"
+                height="200"
                 width="340"
                 image={`${data.thumbnail.path}.${data.thumbnail.extension}`}
                 />
             <CardContent>
-                <Typography gutterBottom variant="h6" component="div" sx={{ overflowY: "hidden", maxHeight: 60 }}>
+                <Typography gutterBottom component="div" sx={{ overflowY: "hidden", maxHeight: 180}}>
                     {data.title}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div" sx={{color : "green", fontWeight: "bold", position:"absolute", bottom: 0, left: 10}}>
