@@ -91,39 +91,39 @@ const Checkout: NextPageWithLayout<Props> = ({ data }: Props) => {
                 cvc: form.cvc,
             }
         }
-    if (number || nameOnCard || expDate || cvc) {
-        const req = await fetch('/api/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-        const response = await req.json();
-        if (response.error) {
-            setError(response.message)
-        } else {
-            localStorage.setItem("CheckoutData", JSON.stringify({
-                name: form.name,
-                lastname: form.lastname,
-                email: form.email,
-                address: {
-                    address1: form.address,
-                    address2: form.address2,
-                    state: form.state,
-                    city: form.city,
-                    zipCode: form.zipCode
+        if (number || nameOnCard || expDate || cvc) {
+            const req = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                comicName: data.title,
-                comicImage: `${data.thumbnail.path}.${data.thumbnail.extension}`,
-                comicPrice: data.price
-            }))
-            router.push({
-                pathname:"/confirmacion-compra"
-            })
-        };
+                body: JSON.stringify(body)
+            });
+            const response = await req.json();
+            if (response.error) {
+                setError(response.message)
+            } else {
+                localStorage.setItem("CheckoutData", JSON.stringify({
+                    name: form.name,
+                    lastname: form.lastname,
+                    email: form.email,
+                    address: {
+                        address1: form.address,
+                        address2: form.address2,
+                        state: form.state,
+                        city: form.city,
+                        zipCode: form.zipCode
+                    },
+                    comicName: data.title,
+                    comicImage: `${data.thumbnail.path}.${data.thumbnail.extension}`,
+                    comicPrice: data.price
+                }))
+                router.push({
+                    pathname: "/confirmacion-compra"
+                })
+            };
+        }
     }
-}
     return (
         <>
             <Head>

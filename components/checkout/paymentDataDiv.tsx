@@ -37,7 +37,7 @@ const PaymentDataDiv = ({ control, handler, watch, errors }: any) => {
                             control={control}
                             name="expDate"
                             type="text"
-                            ph="MM/AA"
+                            ph="MM-AA"
                             />
                             <Typography sx={{color: "red"}}>{errors.expDate?.message?.toString()}</Typography>
                     </Grid>
