@@ -32,8 +32,10 @@ type CheckoutData = {
     comicName: string,
     comicPrice: number
 }
-
-const ConfirmedPurchase: NextPageWithLayout<[]> = () => {
+type Props = {
+    data : []
+}
+const ConfirmedPurchase: NextPageWithLayout<Props> = ( {data} : Props) => {
     const [customerData, setCustomerData] = useState<CheckoutData>({
         name: "",
         lastname: "",
