@@ -126,8 +126,8 @@ describe('CheckoutPage', () => {
             expect(handlerMock2).toHaveBeenCalledTimes(1);
         });
     });
-    describe("handleNext2", () => {
-        it("should trigger the third step if valid data is entered", async () => {
+    describe("onSubmit", () => {
+        it("should trigger handleSubmit", async () => {
             act(() => {
                 render(<Checkout data={{
                     id: 0,
@@ -154,7 +154,6 @@ describe('CheckoutPage', () => {
                 }} />);
             });
             const { result } = renderHook(() => useRouter())
-
             await (async function wizardStep1() {
                 const nameInput = screen.getByPlaceholderText(/Nombre/i);
                 const lastNameInput = screen.getByPlaceholderText(/Apellido/i);
