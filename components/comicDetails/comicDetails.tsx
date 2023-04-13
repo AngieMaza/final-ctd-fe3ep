@@ -52,8 +52,7 @@ const ComicsDetails = ({ comic, characters }: Props) => {
                 width: 0.9,
                 height: 500,
                 flexGrow: 1,
-                backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                backgroundColor: '#fff',
             }}
         >
             <Grid container spacing={2}>

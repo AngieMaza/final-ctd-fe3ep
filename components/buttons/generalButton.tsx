@@ -10,7 +10,7 @@ type Props = {
 }
 const GeneralButton: FC<Props> = ({href,name,disabled}: Props) => {
     return (
-        <Button disabled={disabled} variant="contained" sx={{width:120}}>
+        <Button disabled={disabled} variant="contained" sx={{width:140}}>
             <NextLink href={href} passHref >
                 <MUILink sx={{
                     textDecoration: 'none',

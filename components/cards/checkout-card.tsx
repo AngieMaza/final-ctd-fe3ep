@@ -22,7 +22,7 @@ const CheckCard: FC<Props> = ({ data }: Props) => {
                 image={`${data.thumbnail.path}.${data.thumbnail.extension}`}
                 />
             <CardContent>
-                <Typography gutterBottom component="div" sx={{ overflowY: "hidden", maxHeight: 180}}>
+                <Typography gutterBottom component="div" sx={{ overflowY: "hidden", maxWidth: 180, height:25}}>
                     {data.title}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="div" sx={{color : "green", fontWeight: "bold", position:"absolute", bottom: 0, left: 10}}>

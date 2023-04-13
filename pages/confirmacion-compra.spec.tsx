@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import ConfirmedPurchase from "./confirmacion-compra.page";
+import ConfirmedPurchase, { getServerSideProps } from "./confirmacion-compra.page";
+import { GetServerSidePropsContext } from "next";
 
 describe("ConfirmedPurchase", () => {
     it("renders the page title", () => {
@@ -22,7 +23,6 @@ describe("ConfirmedPurchase", () => {
         render(<ConfirmedPurchase data={[]}/>);
         expect(screen.getByText(/Que disfrutes tu compra/i)).toBeInTheDocument();
     });
-
     it("renders the customer data", () => {
         const checkoutData = {
             name: "John",
@@ -48,6 +48,22 @@ describe("ConfirmedPurchase", () => {
         expect(screen.getByText(/direccion: 123 Main St/i)).toBeInTheDocument();
         expect(screen.getByText(/provincia: ny/i)).toBeInTheDocument();
         expect(screen.getByText(/ciudad: new york - cp: 10001/i)).toBeInTheDocument();
+    });
+    it("should redirect to homepage", async () => {
+        const context = {
+            req: {
+                headers: {
+                    referer: '',
+                },
+            },
+        };
+        const value = await getServerSideProps(context as GetServerSidePropsContext);
+        expect(value).toEqual({
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        });
     });
 });
 

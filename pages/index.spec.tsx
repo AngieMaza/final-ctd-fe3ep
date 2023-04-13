@@ -1,5 +1,6 @@
 import {render, screen} from "@testing-library/react";
-import Index from "dh-marvel/pages/index.page";
+import Index, { getServerSideProps } from "dh-marvel/pages/index.page";
+import { GetServerSidePropsContext } from "next";
 
 describe('IndexPage', () => {
     describe('when rendering default', () => {
@@ -9,5 +10,4 @@ describe('IndexPage', () => {
             expect(title).toBeInTheDocument()
         })
     })
-
 })

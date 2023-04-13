@@ -53,14 +53,14 @@ const Checkout: NextPageWithLayout<Props> = ({ data }: Props) => {
         const name = await trigger("name");
         const lastname = await trigger("lastname");
         const email = await trigger("email");
-        if (name || lastname || email) setActiveStep(1);
+        if (name && lastname && email) setActiveStep(1);
     };
     const handleNext2 = async () => {
         const address = await trigger("address");
         const city = await trigger("city");
         const state = await trigger("state");
         const zipCode = await trigger("zipCode");
-        if (address || city || state || zipCode) setActiveStep(2);
+        if (address && city && state && zipCode) setActiveStep(2);
     };
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -90,7 +90,7 @@ const Checkout: NextPageWithLayout<Props> = ({ data }: Props) => {
                 cvc: form.cvc,
             }
         }
-        if (number || nameOnCard || expDate || cvc) {
+        if (number && nameOnCard && expDate && cvc) {
             const req = await fetch('/api/checkout', {
                 method: 'POST',
                 headers: {
@@ -149,6 +149,7 @@ const Checkout: NextPageWithLayout<Props> = ({ data }: Props) => {
                             sx={{
                                 marginTop: "30px",
                             }}
+                            role="alert"
                         >
                             {error}
                         </Alert>
