@@ -61,8 +61,8 @@ const PaymentDataDiv = ({ control, handler, watch, errors }: any) => {
                 </Grid>
             </Grid>
             <div style={{ marginTop: "2rem" }}>
-                <CheckButton onClick={handler} name="Atras" disabled={false} />
-                <Button type="submit" variant="contained" sx={{ marginLeft: "1rem", color: "primary" }}> Enviar </Button>
+                <CheckButton onClick={handler} name="Atras" disabled={false} role='back2'/>
+                <Button type="submit" variant="contained" sx={{ marginLeft: "1rem", color: "primary" }} role="submit"> Enviar </Button>
             </div>
         </>
     );

@@ -19,7 +19,6 @@ import { Comic } from "dh-marvel/components/comicDetails/comicDetails"
 import CheckCard from "dh-marvel/components/cards/checkout-card"
 import Box from "@mui/material/Box"
 import Alert from "@mui/material/Alert"
-import comic from "dh-marvel/test/mocks/comic"
 import { useRouter } from "next/router"
 
 
@@ -167,7 +166,7 @@ Checkout.getLayout = function getLayout(page: ReactElement) {
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
     const { req } = context;
     const referer = req.headers.referer;
-    if (!referer || !referer.includes('/')) {
+    if (!referer) {
         return {
             redirect: {
                 destination: '/',

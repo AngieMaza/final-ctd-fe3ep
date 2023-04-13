@@ -5,6 +5,7 @@ const MARVEL_API_URL = process.env.MARVEL_API_URL;
 export const fetchApi = async (endpoint: string, urlParams?: string) => {
     const authString = generateAuthenticationString();
     const url = `${MARVEL_API_URL}/${endpoint}?${authString}&${urlParams || ''}`
+    console.log(url);
     const response = await fetch(url);
     return await response.json();
 }
@@ -18,6 +19,7 @@ export const getComics = async (offset?: number, limit?: number) => {
 
 export const getComic = async (comicId: number) => {
     const data = await fetchApi(`comics/${comicId}`);
+    console.log(data);
     const results = data.data.results;
     if (results.length > 0) {
         const comic = results[0];

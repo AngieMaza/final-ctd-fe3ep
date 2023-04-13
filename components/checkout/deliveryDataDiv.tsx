@@ -53,8 +53,8 @@ const DeliveryDataDiv = ({ control, handler, handler2, errors }: any) => {
                 </Grid>
             </Grid>
             <div style={{ marginTop: "2rem" }}>
-                <CheckButton onClick={handler2} name="Atras" disabled={false} />
-                <CheckButton onClick={handler} name="Siguiente" disabled={false} />
+                <CheckButton onClick={handler2} name="Atras" disabled={false} role="back1"/>
+                <CheckButton onClick={handler} name="Siguiente" disabled={false} role="next2"/>
             </div>
         </>
     );

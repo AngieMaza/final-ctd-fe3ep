@@ -39,7 +39,7 @@ const PersonalDataDiv = ({ control, handler, errors }: any) => {
                 </Grid>
             </Grid>
             <div style={{ marginTop: "2rem" }}>
-                <CheckButton onClick={handler} name="Siguiente" disabled={false} />
+                <CheckButton onClick={handler} name="Siguiente" disabled={false} role="next1"/>
             </div>
         </ >
     );

@@ -47,5 +47,5 @@ Primary.args = {
             path: "https://fotografiamejorparavendermas.com/wp-content/uploads/2017/06/La-importancia-de-la-imagen",
             extension: "jpg"
         },
-    },]
+    }]
 };
